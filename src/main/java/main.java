@@ -1,5 +1,5 @@
 public class main {
-    public static void main ( String args[]){
+    public static void main ( String[] args){
         compulsory();
         optional(args);
         bonus();
@@ -13,7 +13,6 @@ public class main {
 
     private static void optional(String[] args) {
         Optional obj2=new Optional();
-        String[] argumente= {"5"};
         obj2.execute(args);
     }
 
