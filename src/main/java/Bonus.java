@@ -1,6 +1,4 @@
 public class Bonus {
-    private static int n;
-    private static int[] parinte;
 
     public void execute ()
     {
