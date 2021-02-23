@@ -1,19 +1,13 @@
 public class Optional {
-    public static void main ( String[] args)
+    public void execute ( String[] args)
     {
         //------------------------------------------- Validare n
-        if ( args.length!=1)
+        if(!validare(args))
         {
-            System.err.println("Eroare 1");
+            System.err.println("Eroare la argumente");
         }
         else
         {
-            for(int i=0;i< args[0].length(); i++)
-                if(args[0].charAt(i)<'0' || args[0].charAt(i)>'9')
-                {
-                    System.err.println("Eroare 2");
-                    break;
-                }
 
             int n=Integer.parseInt(args[0]);
 
@@ -32,7 +26,7 @@ public class Optional {
 
             if(n<100) {
                 System.out.println("Matricea originala a grafului :");
-                Afisare(matrice, n);
+                afisare(matrice, n);
             }
             else
             {
@@ -43,14 +37,14 @@ public class Optional {
 
             //------------------------------------------- Conexitate
             int[][] componentaConexa = new int [n][n];
-            CopiereMatrice(matrice,componentaConexa,n);
+            copiereMatrice(matrice,componentaConexa,n);
             int numarConex=0;
             int nr=2;
             if(n<=300)
             for(int i=0;i<n;i++)
             {
-                CopiereMatrice(matrice,componentaConexa,n);
-                if(Parcurgere(i, matrice, n,nr))
+                copiereMatrice(matrice,componentaConexa,n);
+                if(parcurgere(i, matrice, n,nr))
                 {
                     nr++;
                     numarConex++;
@@ -87,26 +81,41 @@ public class Optional {
                                 matrice[i][j]=1;
                     int[] vizitat=new int[n];
                     int[][]arbore=new int[n][n];
-                    Afisare(matrice,n);
+                    afisare(matrice,n);
                     DFS(0,matrice,n,vizitat,arbore);
 
                     System.out.println("Matricea de adiacenta a arborelui partial este :");
 
-                    Afisare(arbore,n);
+                    afisare(arbore,n);
                 }
 
         }
 
+    }
+
+    public static boolean validare(String[] args)
+    {
+        if ( args.length!=1)
+        {
+            return false;
+        }
+
+        for(int i=0;i< args[0].length(); i++)
+            if(args[0].charAt(i)<'0' || args[0].charAt(i)>'9')
+            {
+                return false;
+            }
+        return true;
 
     }
 
-    public static boolean Parcurgere(int Nod,int[][] matrice,int n,int valoare)
+    public static boolean parcurgere(int Nod, int[][] matrice, int n, int valoare)
     {
         for(int i=0;i<n;i++)
             if(matrice[i][Nod]==1)
             {
                 matrice[i][Nod]=matrice[Nod][i]=valoare;
-                Parcurgere(i, matrice, n,valoare);
+                parcurgere(i, matrice, n,valoare);
                 return true;
             }
         return false;
@@ -130,7 +139,7 @@ public class Optional {
             }
     }
 
-    public static void Afisare (int[][] matrice,int n)
+    public static void afisare(int[][] matrice, int n)
     {
         for(int i=0;i<n;i++)
         {
@@ -141,7 +150,7 @@ public class Optional {
             System.out.println();
         }
     }
-    public  static void CopiereMatrice(int[][] matrice,int[][] matrice2,int n)
+    public  static void copiereMatrice(int[][] matrice, int[][] matrice2, int n)
     {
         for(int i=0;i<n;i++)
             for (int j = 0; j <n; j++)

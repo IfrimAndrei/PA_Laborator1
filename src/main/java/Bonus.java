@@ -1,37 +1,54 @@
 public class Bonus {
-    public static void main ( String[] args)
+    private static int n;
+    private static int[] parinte;
+
+    public void execute ()
     {
+
 
         //---------------------Generarea arborelui
         int n = (int) (Math.random() * 1_000_000)%20+1;
         int[] parinte=new int[n];
-        for(int i=1;i<n;i++)
-            parinte[i]=(int) (Math.random() * 1_000_000)%i;
-        System.out.println("Vectorul de tati :");
-        for(int i=0;i<n;i++)
-            System.out.print(parinte[i]+ " ");
-        System.out.println();
+        vectorTati(n, parinte);
 
         //---------------------Stabilirea nivelelor nodurilor
-        int[] nivel=new int[n];
-        nivel[0]=0;
-        for(int i=1;i<n;i++)
-            nivel[i]=nivel[parinte[i]]+1;
-        System.out.println("Vectorul de nivele :");
-        for(int i=0;i<n;i++)
-            System.out.print(nivel[i]+ " ");
-        System.out.println("\n");
+        int[] nivel = getNivel(n, parinte);
 
         //----------------------Stabilirea frunzelor;
         int[] notFrunza=new int[n];
         for(int i=0;i<n;i++)
             notFrunza[parinte[i]]=1;
+
         //----------------------Afisarea finala
         int[] vizited=new int[n];
-        Afisare(0,parinte,vizited,n,nivel,notFrunza);
+        afisare(0,parinte,vizited,n,nivel,notFrunza);
 
     }
-    public static void Afisare(int nod,int[] tree,int[] vizited, int n,int[] nivel,int[] notFrunza)
+
+    private static void vectorTati(int n, int[] parinte)
+    {
+        for(int i = 1; i< n; i++)
+            parinte[i]=(int) (Math.random() * 1_000_000)%i;
+        System.out.println("Vectorul de tati :");
+        for(int i = 0; i< n; i++)
+            System.out.print(parinte[i]+ " ");
+        System.out.println();
+    }
+
+    private static int[] getNivel(int n, int[] parinte)
+    {
+        int[] nivel=new int[n];
+        nivel[0]=0;
+        for(int i = 1; i< n; i++)
+            nivel[i]=nivel[parinte[i]]+1;
+        System.out.println("Vectorul de nivele :");
+        for(int i = 0; i< n; i++)
+            System.out.print(nivel[i]+ " ");
+        System.out.println("\n");
+        return nivel;
+    }
+
+    public static void afisare(int nod, int[] tree, int[] vizited, int n, int[] nivel, int[] notFrunza)
     {
         for(int i=0;i<n;i++)
         {
@@ -46,7 +63,7 @@ public class Bonus {
                         System.out.println("+node" + i);
                     else
                         System.out.println("-node" + i);
-                    Afisare(i,tree,vizited,n,nivel,notFrunza);
+                    afisare(i,tree,vizited,n,nivel,notFrunza);
                 }
             }
         }
