@@ -1,6 +1,6 @@
 public class Compulsory {
 
-        public void execute (){
+        public static void main (){
 
             System.out.println("Hello world");
 

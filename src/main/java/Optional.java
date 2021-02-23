@@ -1,5 +1,5 @@
 public class Optional {
-    public void execute ( String[] args)
+    public static void main ( String[] args)
     {
         //------------------------------------------- Validare n
         if(!validare(args))
@@ -40,7 +40,7 @@ public class Optional {
             copiereMatrice(matrice,componentaConexa,n);
             int numarConex=0;
             int nr=2;
-            if(n<=300)
+
             for(int i=0;i<n;i++)
             {
                 copiereMatrice(matrice,componentaConexa,n);

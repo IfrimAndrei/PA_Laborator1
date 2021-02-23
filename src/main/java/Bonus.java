@@ -1,6 +1,6 @@
 public class Bonus {
 
-    public void execute ()
+    public static void main ()
     {
 
 
